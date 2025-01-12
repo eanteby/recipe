@@ -1,7 +1,6 @@
-﻿using CPUFramework;
-using CPUWindowsFormsFramework;
-using System.Configuration;
+﻿using CPUWindowsFormsFramework;
 using System.Data;
+using RecipeSystem;
 
 namespace RecipeWinforms
 {
@@ -16,10 +15,9 @@ namespace RecipeWinforms
             gRecipe.CellDoubleClick += gRecipe_CellDoubleClick;
         }
 
-        private void SearchForRecipe(string lastname)
+        private void SearchForRecipe(string recipename)
         {
-            string sql = "select r.RecipeId, r.RecipeName, h.UserName, r.NumCalories, c.CuisineType, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus, r.RecipePic from recipe r join heartyhearthuser h on r.heartyhearthuserid = h.heartyhearthuserid join cuisine c on r.cuisineid = c.cuisineid where r.recipename like '%" + txtRecipeName.Text + "%'";
-            DataTable dt = SQLUtility.GetDataTable(sql);
+            DataTable dt = Recipe.SearchRecipe(recipename);
             gRecipe.DataSource = dt;
             gRecipe.Columns["RecipeId"].Visible = false;
         }
@@ -42,7 +40,7 @@ namespace RecipeWinforms
 
         private void BtnSearch_Click(object? sender, EventArgs e)
         {
-            SearchForRecipe(lblRecipe.Text);
+            SearchForRecipe(txtRecipeName.Text);
         }
 
         private void BtnNew_Click(object? sender, EventArgs e)
