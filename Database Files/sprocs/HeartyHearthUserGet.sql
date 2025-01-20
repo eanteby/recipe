@@ -14,7 +14,7 @@ exec HeartyHearthUserGet --empty result set
 
 exec HeartyHearthUserGet @All = 1
 
-exec HeartyHearthUserGet @UserLastName = 'e'
+exec HeartyHearthUserGet @UserName = 'e'
 
 declare @HeartyHearthUserId int
 select top 1 @HeartyHearthUserId = h.HeartyHearthUserId from HeartyHearthUser h
