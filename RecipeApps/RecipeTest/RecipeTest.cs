@@ -140,6 +140,34 @@ namespace RecipeTest
         }
 
         [Test]
+        public void DeletePublishedRecipeOrArchivedLessThanThirtyDays()
+        {
+            string sql = @"select r.RecipeId, r.RecipeName, h.UserName, r.NumCalories, c.CuisineType, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus, r.RecipePic 
+from recipe r 
+join heartyhearthuser h 
+on r.heartyhearthuserid = h.heartyhearthuserid 
+join cuisine c 
+on r.cuisineid = c.cuisineid
+where (r.RecipeStatus = 'published' 
+or 
+(r.RecipeStatus = 'archived' 
+and datediff(day, r.DateArchived, getdate()) <30))";
+            DataTable dt = SQLUtility.GetDataTable(sql);
+            int recipeid = 0;
+            string recipedesc = "";
+            if (dt.Rows.Count > 0)
+            {
+                recipeid = (int)dt.Rows[0]["recipeid"];
+                recipedesc = dt.Rows[0]["RecipeName"].ToString();
+            }
+            Assume.That(recipeid > 0, "cannot delete recipe, no published/archived less than 30 days recipes in database.");
+            TestContext.WriteLine("existing recipe with id " + recipeid + " " + recipedesc);
+            TestContext.WriteLine("ensure app cannot delete " + recipeid);
+            Exception ex = Assert.Throws<Exception>(() => Recipe.DeleteRecipe(dt));
+            TestContext.WriteLine(ex.Message);
+        }
+
+        [Test]
         public void ChangeExistingRecipeToInvalidNumCalories()
         {
             int recipeid = SQLUtility.GetFirstColumnFirstRowValue("select top 1 * from recipe");
