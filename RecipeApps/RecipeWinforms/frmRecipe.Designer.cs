@@ -39,11 +39,11 @@
             lblCaptionStatus = new Label();
             lblCaptionRecipePic = new Label();
             tblMain = new TableLayoutPanel();
+            txtDateArchived = new TextBox();
+            txtDatePublished = new TextBox();
+            txtDateDrafted = new TextBox();
             txtRecipeName = new TextBox();
             txtNumCalories = new TextBox();
-            dtpDateDrafted = new DateTimePicker();
-            dtpDatePublished = new DateTimePicker();
-            dtpDateArchived = new DateTimePicker();
             lstUserName = new ComboBox();
             lstCuisineType = new ComboBox();
             txtRecipeStatus = new TextBox();
@@ -142,6 +142,9 @@
             tblMain.ColumnCount = 2;
             tblMain.ColumnStyles.Add(new ColumnStyle());
             tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tblMain.Controls.Add(txtDateArchived, 1, 6);
+            tblMain.Controls.Add(txtDatePublished, 1, 5);
+            tblMain.Controls.Add(txtDateDrafted, 1, 4);
             tblMain.Controls.Add(lblCaptionRecipePic, 0, 8);
             tblMain.Controls.Add(lblCaptionStatus, 0, 7);
             tblMain.Controls.Add(lblCaptionDateArchived, 0, 6);
@@ -153,9 +156,6 @@
             tblMain.Controls.Add(lblCaptionNumCalories, 0, 3);
             tblMain.Controls.Add(txtRecipeName, 1, 0);
             tblMain.Controls.Add(txtNumCalories, 1, 3);
-            tblMain.Controls.Add(dtpDateDrafted, 1, 4);
-            tblMain.Controls.Add(dtpDatePublished, 1, 5);
-            tblMain.Controls.Add(dtpDateArchived, 1, 6);
             tblMain.Controls.Add(lstUserName, 1, 1);
             tblMain.Controls.Add(lstCuisineType, 1, 2);
             tblMain.Controls.Add(txtRecipeStatus, 1, 7);
@@ -177,6 +177,39 @@
             tblMain.Size = new Size(434, 468);
             tblMain.TabIndex = 1;
             // 
+            // txtDateArchived
+            // 
+            txtDateArchived.AccessibleName = "";
+            txtDateArchived.Dock = DockStyle.Fill;
+            txtDateArchived.Location = new Point(147, 316);
+            txtDateArchived.Margin = new Padding(3, 4, 3, 4);
+            txtDateArchived.Name = "txtDateArchived";
+            txtDateArchived.ReadOnly = true;
+            txtDateArchived.Size = new Size(284, 27);
+            txtDateArchived.TabIndex = 29;
+            // 
+            // txtDatePublished
+            // 
+            txtDatePublished.AccessibleName = "";
+            txtDatePublished.Dock = DockStyle.Fill;
+            txtDatePublished.Location = new Point(147, 264);
+            txtDatePublished.Margin = new Padding(3, 4, 3, 4);
+            txtDatePublished.Name = "txtDatePublished";
+            txtDatePublished.ReadOnly = true;
+            txtDatePublished.Size = new Size(284, 27);
+            txtDatePublished.TabIndex = 28;
+            // 
+            // txtDateDrafted
+            // 
+            txtDateDrafted.AccessibleName = "";
+            txtDateDrafted.Dock = DockStyle.Fill;
+            txtDateDrafted.Location = new Point(147, 212);
+            txtDateDrafted.Margin = new Padding(3, 4, 3, 4);
+            txtDateDrafted.Name = "txtDateDrafted";
+            txtDateDrafted.ReadOnly = true;
+            txtDateDrafted.Size = new Size(284, 27);
+            txtDateDrafted.TabIndex = 27;
+            // 
             // txtRecipeName
             // 
             txtRecipeName.Dock = DockStyle.Fill;
@@ -194,33 +227,6 @@
             txtNumCalories.Name = "txtNumCalories";
             txtNumCalories.Size = new Size(284, 27);
             txtNumCalories.TabIndex = 12;
-            // 
-            // dtpDateDrafted
-            // 
-            dtpDateDrafted.Format = DateTimePickerFormat.Short;
-            dtpDateDrafted.Location = new Point(147, 212);
-            dtpDateDrafted.Margin = new Padding(3, 4, 3, 4);
-            dtpDateDrafted.Name = "dtpDateDrafted";
-            dtpDateDrafted.Size = new Size(228, 27);
-            dtpDateDrafted.TabIndex = 18;
-            // 
-            // dtpDatePublished
-            // 
-            dtpDatePublished.Format = DateTimePickerFormat.Short;
-            dtpDatePublished.Location = new Point(147, 264);
-            dtpDatePublished.Margin = new Padding(3, 4, 3, 4);
-            dtpDatePublished.Name = "dtpDatePublished";
-            dtpDatePublished.Size = new Size(228, 27);
-            dtpDatePublished.TabIndex = 19;
-            // 
-            // dtpDateArchived
-            // 
-            dtpDateArchived.Format = DateTimePickerFormat.Short;
-            dtpDateArchived.Location = new Point(147, 316);
-            dtpDateArchived.Margin = new Padding(3, 4, 3, 4);
-            dtpDateArchived.Name = "dtpDateArchived";
-            dtpDateArchived.Size = new Size(228, 27);
-            dtpDateArchived.TabIndex = 20;
             // 
             // lstUserName
             // 
@@ -325,9 +331,6 @@
         private TextBox txtRecipeName;
         private TextBox txtNumCalories;
         private ToolStrip tsMain;
-        private DateTimePicker dtpDateDrafted;
-        private DateTimePicker dtpDatePublished;
-        private DateTimePicker dtpDateArchived;
         private ToolStripButton btnSave;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton btnDelete;
@@ -335,5 +338,8 @@
         private ComboBox lstCuisineType;
         private TextBox txtRecipeStatus;
         private TextBox txtRecipePic;
+        private TextBox txtDateArchived;
+        private TextBox txtDatePublished;
+        private TextBox txtDateDrafted;
     }
 }
