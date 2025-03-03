@@ -12,7 +12,6 @@ begin
 	join meal m
 	on m.mealid = mc.mealid
 	where m.mealid = @mealid
-	group by m.mealname
 
 	return @value
 end
