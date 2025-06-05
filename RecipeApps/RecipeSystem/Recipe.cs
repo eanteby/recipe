@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CPUFramework;
-
+﻿
 namespace RecipeSystem
 {
     public class Recipe
     {
+        public static void SetUpNav()
+        {
+           
+        }
         public static DataTable SearchRecipe(string recipename )
         {
             DataTable dt = new();
@@ -18,6 +14,12 @@ namespace RecipeSystem
             cmd.Parameters["@RecipeName"].Value = recipename;
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
+        }
+
+        public static DataTable GetRecipeList()
+        {
+            SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeListGet");
+            return SQLUtility.GetDataTable(cmd);
         }
 
         public static DataTable LoadForm(int recipeid)
@@ -65,6 +67,14 @@ namespace RecipeSystem
             cmd.Parameters["@All"].Value = 1;
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
+        }
+
+        public static int CloneRecipe(int recipeid)
+        {
+            SqlCommand cmd = SQLUtility.GetSQLCommand("CloneRecipe");
+            SQLUtility.SetParamValue(cmd, "@BaseRecipeId", recipeid);
+            SQLUtility.ExecuteSQL(cmd);
+            return (int)cmd.Parameters["@RecipeId"].Value;
         }
     }
 }

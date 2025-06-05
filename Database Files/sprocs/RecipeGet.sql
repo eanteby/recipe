@@ -1,6 +1,9 @@
 create or alter procedure dbo.RecipeGet(@RecipeId int = 0, @All bit = 0, @RecipeName varchar(150) = '' )
 as
 begin
+	
+	select @RecipeId = isnull(@RecipeId, 0)
+
 	select r.RecipeId, r.HeartyHearthUserId, r.CuisineId, r.RecipeName, r.NumCalories, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus, r.RecipePic, 
 	RecipeDesc = dbo.RecipeDesc(r.recipeid)
 	from Recipe r

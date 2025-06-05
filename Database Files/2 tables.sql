@@ -5,9 +5,9 @@ go
 drop table if exists RecipeIngredient
 drop table if exists MealCourseRecipe
 drop table if exists MealCourse
-drop table if exists CookBookRecipe
+drop table if exists CookbookRecipe
 drop table if exists Direction
-drop table if exists CookBook
+drop table if exists Cookbook
 drop table if exists Meal 
 drop table if exists Recipe
 drop table if exists MeasurementType
@@ -95,17 +95,17 @@ create table dbo.Meal(
     MealPic as concat('Meal_', replace(MealName, ' ', '_'), '.jpg') persisted,
 )
 
-create table dbo.CookBook(
-    CookBookId int not null identity primary key, 
-    HeartyHearthUserId int not null constraint f_HeartyHearthUser_CookBook foreign key references HeartyHearthUser(HeartyHearthUserId), 
-    CookBookName varchar(200) not null 
-        constraint ck_CookBook_CookBookName_cannot_be__Blank check (CookBookName > '')
-        constraint u_CookBook_CookBookName unique,
-    CookBookPrice decimal(5, 2) not null constraint ck_CookBook_CookBookPrice_must_be_greater_than_0 check (CookBookPrice > 0),
+create table dbo.Cookbook(
+    CookbookId int not null identity primary key, 
+    HeartyHearthUserId int not null constraint f_HeartyHearthUser_Cookbook foreign key references HeartyHearthUser(HeartyHearthUserId), 
+    CookbookName varchar(200) not null 
+        constraint ck_Cookbook_CookbookName_cannot_be__Blank check (CookbookName > '')
+        constraint u_Cookbook_CookbookName unique,
+    CookbookPrice decimal(5, 2) not null constraint ck_CookBook_CookBookPrice_must_be_greater_than_0 check (CookBookPrice > 0),
     IsActive bit not null default 0,  
     DateCreated DateTime not null default getdate()
-        constraint ck_CookBook_DateCreated_cannot_be_a_future_date check (DateCreated <= getdate()),
-    CookBookPic as concat('CookBook_', replace(CookBookName, ' ', '_'), '.jpg') persisted,
+        constraint ck_Cookbook_DateCreated_cannot_be_a_future_date check (DateCreated <= getdate()),
+    CookbookPic as concat('CookBook_', replace(CookbookName, ' ', '_'), '.jpg') persisted,
 )
 
 create table dbo.Direction( 
@@ -117,13 +117,13 @@ create table dbo.Direction(
 
 )
 
-create table dbo.CookBookRecipe( 
-    CookBookRecipeId int not null identity primary key, 
-    CookBookId int not null constraint f_CookBook_CookBookRecipe foreign key references CookBook(CookBookId), 
-    RecipeID int not null constraint f_Recipe_CookBookRecipe foreign key references Recipe(RecipeId), 
-    RecipeSequence int not null constraint ck_CookBookRecipe_RecipeSequence_must_be_greater_than_0 check (RecipeSequence > 0),
-    constraint u_CookBookRecipe_CookBookId_RecipeId unique (CookBookId, RecipeID),
-    constraint u_CookBookRecipe_CookBookId_RecipeSequence unique (CookBookId, RecipeSequence)
+create table dbo.CookbookRecipe( 
+    CookbookRecipeId int not null identity primary key, 
+    CookbookId int not null constraint f_Cookbook_CookbookRecipe foreign key references Cookbook(CookbookId), 
+    RecipeID int not null constraint f_Recipe_CookbookRecipe foreign key references Recipe(RecipeId), 
+    RecipeSequence int not null constraint ck_CookbookRecipe_RecipeSequence_must_be_greater_than_0 check (RecipeSequence > 0),
+    constraint u_CookbookRecipe_CookbookId_RecipeId unique (CookbookId, RecipeID),
+    constraint u_CookbookRecipe_CookbookId_RecipeSequence unique (CookbookId, RecipeSequence)
 )
 
 create table dbo.MealCourse(

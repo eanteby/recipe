@@ -4,9 +4,10 @@ create or alter proc dbo.RecipeUpdate(
 @CuisineId int ,
 @RecipeName varchar (150),
 @NumCalories int ,
-@DateDrafted datetime ,
+@DateDrafted datetime output,
 @DatePublished datetime ,
 @DateArchived datetime ,
+@RecipeStatus varchar (15) output,
 @Message varchar(500) = '' output
 )
 as
@@ -17,9 +18,9 @@ begin
 	if(@RecipeId = 0)
 	begin 
 		insert Recipe(CuisineId, HeartyHearthUserId, RecipeName, NumCalories, DateDrafted, DatePublished, DateArchived)
-		values(@CuisineId, @HeartyHearthUserId, @RecipeName, @NumCalories, getdate(), null, null)
+		values(@CuisineId, @HeartyHearthUserId, @RecipeName, @NumCalories, getdate() , null, null)
 
-		select @RecipeId = scope_identity()
+		select @RecipeId = scope_identity(), @RecipeStatus = RecipeStatus, @DateDrafted = DateDrafted from Recipe where RecipeId = scope_identity()
 	end
 	else
 	begin
@@ -29,10 +30,16 @@ begin
 		HeartyHearthUserId = @HeartyHearthUserId,
 		RecipeName = @RecipeName, 
 		NumCalories = @NumCalories,
-		DateDrafted = @DateDrafted, 
 		DatePublished = @DatePublished, 
 		DateArchived = @DateArchived
 		where RecipeId = @RecipeId
 
+		select @RecipeStatus = RecipeStatus from Recipe where RecipeId = @RecipeId
+
 	end
 end
+
+go
+
+
+

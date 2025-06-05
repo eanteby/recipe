@@ -15,7 +15,7 @@ namespace RecipeWinforms
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             RecipeDBManager.SetConnectionString("Server=tcp:eanteby.database.windows.net,1433;Initial Catalog=HeartyHearthDB;Persist Security Info=False;User ID=eanteby;Password=CpuAdmin123!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-            Application.Run(new frmRecipeSearch());
+            Application.Run(new frmMain());
         }
     }
 }
