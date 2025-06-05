@@ -1,4 +1,6 @@
 create or alter proc dbo.MealListGet(
+@MealId int = 0,
+@All bit = 1,
 @Message varchar(500) = '' output
 )
 as
@@ -16,6 +18,8 @@ join MealCourseRecipe mcr
 on mcr.MealCourseId = mc.MealCourseId
 join Recipe r
 on mcr.RecipeId = r.RecipeId
+where @All = 1
+or m.MealId = @MealId
 group by m.MealId, m.MealName, h.UserName
 
 return @return
