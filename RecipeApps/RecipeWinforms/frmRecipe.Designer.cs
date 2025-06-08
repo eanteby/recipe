@@ -137,7 +137,7 @@
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(579, 309);
+            tabPage2.Size = new Size(581, 320);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Steps";
             tabPage2.UseVisualStyleBackColor = true;
@@ -155,7 +155,7 @@
             tblSteps.RowCount = 2;
             tblSteps.RowStyles.Add(new RowStyle());
             tblSteps.RowStyles.Add(new RowStyle());
-            tblSteps.Size = new Size(573, 303);
+            tblSteps.Size = new Size(575, 314);
             tblSteps.TabIndex = 0;
             // 
             // btnSaveStep
@@ -174,7 +174,7 @@
             gSteps.Location = new Point(3, 38);
             gSteps.Name = "gSteps";
             gSteps.RowHeadersWidth = 51;
-            gSteps.Size = new Size(567, 262);
+            gSteps.Size = new Size(569, 273);
             gSteps.TabIndex = 1;
             // 
             // tblButtons

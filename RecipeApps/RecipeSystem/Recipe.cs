@@ -7,28 +7,13 @@ namespace RecipeSystem
         {
            
         }
-        public static DataTable SearchRecipe(string recipename )
+        public static DataTable LoadForm(int recipeid = 0, bool all = false)
         {
-            DataTable dt = new();
-            SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeGet");
-            cmd.Parameters["@RecipeName"].Value = recipename;
-            dt = SQLUtility.GetDataTable(cmd);
-            return dt;
-        }
-
-        public static DataTable GetRecipeList()
-        {
-            SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeListGet");
-            return SQLUtility.GetDataTable(cmd);
-        }
-
-        public static DataTable LoadForm(int recipeid)
-        {
-            DataTable dt = new();
             SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeGet");
             cmd.Parameters["@RecipeId"].Value = recipeid;
-            dt = SQLUtility.GetDataTable(cmd);
-            return dt;
+            cmd.Parameters["@All"].Value = all;
+            return SQLUtility.GetDataTable(cmd);
+
         }
 
         public static void SaveRecipe(DataTable dtrecipe)

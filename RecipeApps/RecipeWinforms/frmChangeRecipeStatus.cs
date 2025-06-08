@@ -44,7 +44,7 @@ namespace RecipeWinforms
 
         private void UpdateStatus(Button b)
         {
-            var resp = MessageBox.Show("Are you sure you want to change recipe status to " + b.Tag.ToString() + "?", Application.ProductName, MessageBoxButtons.YesNo);
+            var resp = MessageBox.Show("Are you sure you want to change recipe status to " + b.Tag.ToString() + "?", Application.ProductName, MessageBoxButtons.YesNoCancel);
             if (resp == DialogResult.No)
             {
                 return;
@@ -65,7 +65,10 @@ namespace RecipeWinforms
                         frmRecipe.dtrecipe.Rows[0]["DatePublished"] = DBNull.Value;
                         frmRecipe.dtrecipe.Rows[0]["DateArchived"] = DBNull.Value;
                     }
-
+                    else if (currentstatus == RecipeStatusEnum.published)
+                    {
+                        frmRecipe.dtrecipe.Rows[0]["DateArchived"] = DBNull.Value;
+                    }
                     Recipe.SaveRecipe(frmRecipe.dtrecipe);
                     bindsource.ResetBindings(false);
                     foreach (Button btn in tblButtons.Controls)

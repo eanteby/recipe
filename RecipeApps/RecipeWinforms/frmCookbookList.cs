@@ -15,7 +15,9 @@ namespace RecipeWinforms
 
         private void BindData()
         {
-            gCookbookList.DataSource = Cookbook.LoadCookbooklist();
+            gCookbookList.DataSource = Cookbook.LoadCookbook(0, true);
+            gCookbookList.Columns["IsActive"].Visible = false;
+            gCookbookList.Columns["DateCreated"].Visible = false;
             WindowsFormsUtility.FormatGridForSearchResults(gCookbookList, "Cookbook");
         }
 

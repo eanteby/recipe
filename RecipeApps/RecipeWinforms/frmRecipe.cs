@@ -1,4 +1,6 @@
 ﻿
+using RecipeSystem;
+
 namespace RecipeWinforms
 {
     public partial class frmRecipe : Form
@@ -23,7 +25,10 @@ namespace RecipeWinforms
             gIngredients.CellContentClick += GIngredients_CellContentClick;
             gSteps.CellContentClick += GSteps_CellContentClick;
             this.FormClosing += FrmRecipe_FormClosing;
+            gIngredients.EditingControlShowing += GIngredients_EditingControlShowing;
+            gSteps.EditingControlShowing += GSteps_EditingControlShowing;
         }
+
 
         public void ShowForm(int recipeidval)
         {
@@ -217,6 +222,7 @@ namespace RecipeWinforms
             {
                 MessageBox.Show(ex.Message, Application.ProductName);
             }
+
             finally { Cursor = Cursors.Default; }
         }
 
@@ -269,6 +275,47 @@ namespace RecipeWinforms
                         e.Cancel = true;
                         this.Activate();
                         break;
+                }
+            }
+        }
+
+        private void GSteps_EditingControlShowing(object? sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (gSteps.CurrentCell.ColumnIndex == gSteps.Columns["StepNum"].Index)
+            {
+                TextBox textBox = e.Control as TextBox;
+                if (textBox != null)
+                {
+                    textBox.KeyPress += TextBox_KeyPress;
+                }
+            }
+        }
+
+        private void GIngredients_EditingControlShowing(object? sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (gIngredients.CurrentCell.ColumnIndex == gIngredients.Columns["IngredientSequence"].Index)
+            {
+                TextBox textBox = e.Control as TextBox;
+                if (textBox != null)
+                {
+                    textBox.KeyPress += TextBox_KeyPress;
+                }
+            }
+        }
+
+        private void TextBox_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                if (gIngredients.CurrentCell.ColumnIndex == gIngredients.Columns["MeasurementAmount"].Index && e.KeyChar == '.')
+                {
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a valid numeric value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    e.Handled = true;
                 }
             }
         }

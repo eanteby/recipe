@@ -1,4 +1,6 @@
 ﻿
+using RecipeSystem;
+
 namespace RecipeWinforms
 {
     public partial class frmRecipeList : Form
@@ -15,7 +17,14 @@ namespace RecipeWinforms
 
         private void BindData()
         {
-            gData.DataSource = Recipe.GetRecipeList();
+            gData.DataSource = Recipe.LoadForm(0, true);
+            foreach(DataGridViewColumn col  in gData.Columns)
+            {
+                if (col.ToString().Contains("Date"))
+                {
+                    col.Visible = false;
+                }
+            }
             WindowsFormsUtility.FormatGridForSearchResults(gData, "Cookbook");
         }
 

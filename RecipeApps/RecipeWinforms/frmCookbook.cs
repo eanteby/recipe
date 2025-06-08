@@ -1,5 +1,6 @@
 ﻿
 using RecipeSystem;
+using System.Windows.Forms;
 
 namespace RecipeWinforms
 {
@@ -17,6 +18,7 @@ namespace RecipeWinforms
             btnDeleteCookbook.Click += BtnDeleteCookbook_Click;
             btnSaveRecipe.Click += BtnSaveRecipe_Click;
             gRecipes.CellContentClick += GRecipes_CellContentClick;
+            gRecipes.EditingControlShowing += GRecipes_EditingControlShowing;
             this.FormClosing += FrmCookbook_FormClosing;
 
         }
@@ -205,6 +207,28 @@ namespace RecipeWinforms
                         this.Activate();
                         break;
                 }
+            }
+        }
+
+
+        private void GRecipes_EditingControlShowing(object? sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (gRecipes.CurrentCell.ColumnIndex == gRecipes.Columns["RecipeSequence"].Index)
+            {
+                TextBox textBox = e.Control as TextBox;
+                if (textBox != null)
+                {
+                    textBox.KeyPress += TextBox_KeyPress;
+                }
+            }
+        }
+
+        private void TextBox_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                MessageBox.Show("Please enter a valid numeric value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                e.Handled = true;
             }
         }
 

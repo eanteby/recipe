@@ -1,4 +1,6 @@
 ﻿
+using RecipeSystem;
+
 namespace RecipeWinforms
 {
     public partial class frmDataMaintenance : Form
@@ -13,6 +15,7 @@ namespace RecipeWinforms
             btnSave.Click += BtnSave_Click;
             gData.CellContentClick += GData_CellContentClick;
             this.FormClosing += FrmDataMaintenance_FormClosing;
+            gData.EditingControlShowing += GData_EditingControlShowing;
             SetUpRadioButtons();
         }
 
@@ -29,7 +32,7 @@ namespace RecipeWinforms
 
         private void Delete(int rowindex)
         {
-            var resp = MessageBox.Show(DeleteMessage() , Application.ProductName, MessageBoxButtons.YesNo);
+            var resp = MessageBox.Show(DeleteMessage() , Application.ProductName, MessageBoxButtons.YesNoCancel);
             int id = WindowsFormsUtility.GetIdFromGrid(gData, rowindex, currenttabletype.ToString() + "Id");
             if (resp == DialogResult.No)
             {
@@ -149,6 +152,30 @@ namespace RecipeWinforms
         private void BtnSave_Click(object? sender, EventArgs e)
         {
             Save();
+        }
+
+        private void GData_EditingControlShowing(object? sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (currenttabletype == TableTypeEnum.Course)
+            {
+                if (gData.CurrentCell.ColumnIndex == gData.Columns["CourseSequence"].Index)
+                {
+                    TextBox textBox = e.Control as TextBox;
+                    if (textBox != null)
+                    {
+                        textBox.KeyPress += TextBox_KeyPress;
+                    }
+                }
+            }
+        }
+
+        private void TextBox_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                MessageBox.Show("Please enter a valid numeric value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                e.Handled = true;
+            }
         }
     }
 }

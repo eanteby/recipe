@@ -22,18 +22,13 @@ namespace RecipeSystem
             cmd.Parameters["@CookbookId"].Value = cookbookid;
             SQLUtility.ExecuteSQL(cmd);
         }
-        public static DataTable LoadCookbooklist()
-        {
-            SqlCommand cmd = SQLUtility.GetSQLCommand("CookbookListGet");
-            cmd.Parameters["@All"].Value = 1;
-            return SQLUtility.GetDataTable(cmd);
-        }
 
-        public static DataTable LoadCookbook(int id)
+        public static DataTable LoadCookbook(int id, bool all = false)
         {
             DataTable dt = new();
             SqlCommand cmd = SQLUtility.GetSQLCommand("CookbookGet");
             cmd.Parameters["@CookbookId"].Value = id;
+            cmd.Parameters["@All"].Value = all;
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
         }
