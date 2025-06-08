@@ -152,8 +152,6 @@ create table dbo.RecipeIngredient(
 ) 
 
 
-update cookbook
-set cookbookprice = cookbookprice + .03
-from cookbook
-
-select * from cookbook
+update recipe
+set numcalories = 's'
+from recipe

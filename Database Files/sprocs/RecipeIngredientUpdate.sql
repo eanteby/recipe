@@ -4,7 +4,7 @@ create or alter proc dbo.RecipeIngredientUpdate(
 	@IngredientId int = 0,
 	@MeasurementTypeId int = 0,
 	@IngredientSequence int = 0,
-	@MeasurementAmount int = 0,
+	@MeasurementAmount decimal(5,3) = 0,
 	@Message varchar(500) = ' ' output
 )
 as
