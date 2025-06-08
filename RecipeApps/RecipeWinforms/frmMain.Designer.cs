@@ -182,7 +182,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1142, 646);
+            ClientSize = new Size(1142, 710);
             Controls.Add(tsMain);
             Controls.Add(mnuMain);
             IsMdiContainer = true;

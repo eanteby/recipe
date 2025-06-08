@@ -1,4 +1,6 @@
 ﻿
+using RecipeSystem;
+
 namespace RecipeWinforms
 {
     public partial class frmChangeRecipeStatus : Form
@@ -30,34 +32,13 @@ namespace RecipeWinforms
             btnDatePublished.Tag = RecipeStatusEnum.published;
             btnDateDrafted.Tag = RecipeStatusEnum.drafted;
 
-            EnableDisableButtons();
             foreach (Button b in tblButtons.Controls)
             {
+                if (frmRecipe.dtrecipe.Rows[0]["RecipeStatus"].ToString() == b.Text.ToLower() + "ed")
+                {
+                    b.Enabled = false;
+                }
                 b.Click += B_Click;
-            }
-        }
-
-        private void EnableDisableButtons(bool draft, bool publish, bool archive)
-        {
-            btnDateArchived.Enabled = archive;
-            btnDatePublished.Enabled = publish;
-            btnDateDrafted.Enabled = draft;
-        }
-
-        private void EnableDisableButtons()
-        {
-            Enum.TryParse(frmRecipe.dtrecipe.Rows[0]["RecipeStatus"].ToString(), out RecipeStatusEnum currentstatus);
-            switch (currentstatus) 
-            { 
-                case RecipeStatusEnum.drafted:
-                    EnableDisableButtons(false, true, true);
-                    break;
-                case RecipeStatusEnum.published:
-                    EnableDisableButtons(false, false, true);
-                    break;
-                case RecipeStatusEnum.archived:
-                    EnableDisableButtons(true, false, false);
-                    break;
             }
         }
 
@@ -70,22 +51,33 @@ namespace RecipeWinforms
             }
             else if (resp == DialogResult.Yes)
             {
-                if (b.Tag != null && b.Tag is RecipeStatusEnum)
+                try
                 {
-                    currentstatus = (RecipeStatusEnum)b.Tag;
+                    if (b.Tag != null && b.Tag is RecipeStatusEnum)
+                    {
+                        currentstatus = (RecipeStatusEnum)b.Tag;
+                    }
+
+                    frmRecipe.dtrecipe.Rows[0][b.Name.Substring(3)] = DateTime.Now.ToString();
+
+                    if (currentstatus == RecipeStatusEnum.drafted)
+                    {
+                        frmRecipe.dtrecipe.Rows[0]["DatePublished"] = DBNull.Value;
+                        frmRecipe.dtrecipe.Rows[0]["DateArchived"] = DBNull.Value;
+                    }
+
+                    Recipe.SaveRecipe(frmRecipe.dtrecipe);
+                    bindsource.ResetBindings(false);
+                    foreach (Button btn in tblButtons.Controls)
+                    {
+                        btn.Enabled = true;
+                    }
+                    b.Enabled = false;
                 }
-
-                frmRecipe.dtrecipe.Rows[0][b.Name.Substring(3)] = DateTime.Now.ToString();
-
-                if (currentstatus == RecipeStatusEnum.drafted)
+                catch (Exception ex)
                 {
-                    frmRecipe.dtrecipe.Rows[0]["DatePublished"] = DBNull.Value;
-                    frmRecipe.dtrecipe.Rows[0]["DateArchived"] = DBNull.Value;
+                    MessageBox.Show(ex.Message, Application.ProductName);
                 }
-
-                Recipe.SaveRecipe(frmRecipe.dtrecipe);
-                bindsource.ResetBindings(false);
-                EnableDisableButtons();
             }
         }
 

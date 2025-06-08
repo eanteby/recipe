@@ -1,4 +1,8 @@
-create or alter procedure dbo.RecipeGet(@RecipeId int = 0, @All bit = 0, @RecipeName varchar(150) = '' )
+create or alter procedure dbo.RecipeGet(
+	@RecipeId int = 0, 
+	@All bit = 0, 
+	@RecipeName varchar(150) = '' 
+)
 as
 begin
 	

@@ -1,9 +1,9 @@
 create or alter proc dbo.HeartyHearthUserUpdate(
-@HeartyHearthUserId int = 0 output,
-@UserFirstName varchar(50),
-@UserLastName varchar(50),
-@UserName varchar(50),
-@Message varchar(500) = ' ' output
+	@HeartyHearthUserId int = 0 output,
+	@UserFirstName varchar(50),
+	@UserLastName varchar(50),
+	@UserName varchar(50),
+	@Message varchar(500) = ' ' output
 )
 as
 begin
@@ -30,5 +30,3 @@ begin
 
 	return @return
 end
-
-select * from HeartyHearthUser

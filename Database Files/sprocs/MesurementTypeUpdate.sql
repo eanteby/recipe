@@ -1,7 +1,7 @@
 create or alter proc dbo.MeasurementTypeUpdate(
-@MeasurementTypeId int = 0 output,
-@MeasurementTypeDesc varchar(50),
-@Message varchar(500) = '' output
+	@MeasurementTypeId int = 0 output,
+	@MeasurementTypeDesc varchar(50),
+	@Message varchar(500) = '' output
 )
 as
 begin

@@ -1,7 +1,7 @@
 create or alter proc dbo.IngredientUpdate(
-@IngredientId int = 0 output,
-@IngredientName varchar(50),
-@Message varchar(500) = '' output
+	@IngredientId int = 0 output,
+	@IngredientName varchar(50),
+	@Message varchar(500) = '' output
 )
 as
 begin
@@ -15,7 +15,6 @@ begin
 		values(@IngredientName)
 
 		select @IngredientId = SCOPE_IDENTITY()
-
 	end
 	else
 	begin

@@ -1,8 +1,8 @@
 create or alter proc dbo.RecipeIngredientGet(
- @RecipeIngredientId int = 0 output,
- @RecipeId int = 0,
- @All bit = 0,
- @Message varchar(500) = '' output
+	 @RecipeIngredientId int = 0 output,
+	 @RecipeId int = 0,
+	 @All bit = 0,
+	 @Message varchar(500) = '' output
 )
 as
 begin

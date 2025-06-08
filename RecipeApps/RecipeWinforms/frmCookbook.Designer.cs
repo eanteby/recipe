@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             tblMain = new TableLayoutPanel();
+            btnDeleteCookbook = new Button();
             gRecipes = new DataGridView();
             lblCookbookNameCaption = new Label();
             lblUserCaption = new Label();
@@ -37,17 +38,17 @@
             txtCookbookName = new TextBox();
             tbl2 = new TableLayoutPanel();
             lblDateCreatedCaption = new Label();
-            txtCookbookPrice = new TextBox();
             lblDateCreated = new Label();
+            numCookbookPrice = new NumericUpDown();
             cbIsActive = new CheckBox();
             lstUserName = new ComboBox();
             btnSaveRecipe = new Button();
             lblDivider = new Label();
             btnSaveCookbook = new Button();
-            btnDeleteCookbook = new Button();
             tblMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gRecipes).BeginInit();
             tbl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numCookbookPrice).BeginInit();
             SuspendLayout();
             // 
             // tblMain
@@ -84,6 +85,16 @@
             tblMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tblMain.Size = new Size(800, 450);
             tblMain.TabIndex = 0;
+            // 
+            // btnDeleteCookbook
+            // 
+            btnDeleteCookbook.AutoSize = true;
+            btnDeleteCookbook.Location = new Point(130, 3);
+            btnDeleteCookbook.Name = "btnDeleteCookbook";
+            btnDeleteCookbook.Size = new Size(94, 30);
+            btnDeleteCookbook.TabIndex = 15;
+            btnDeleteCookbook.Text = "Delete";
+            btnDeleteCookbook.UseVisualStyleBackColor = true;
             // 
             // gRecipes
             // 
@@ -147,43 +158,45 @@
             tbl2.ColumnStyles.Add(new ColumnStyle());
             tbl2.ColumnStyles.Add(new ColumnStyle());
             tbl2.Controls.Add(lblDateCreatedCaption, 1, 0);
-            tbl2.Controls.Add(txtCookbookPrice, 0, 1);
             tbl2.Controls.Add(lblDateCreated, 1, 1);
+            tbl2.Controls.Add(numCookbookPrice, 0, 1);
             tbl2.Location = new Point(130, 106);
             tbl2.Name = "tbl2";
             tbl2.RowCount = 2;
             tbl2.RowStyles.Add(new RowStyle());
             tbl2.RowStyles.Add(new RowStyle());
-            tbl2.Size = new Size(234, 53);
+            tbl2.Size = new Size(259, 53);
             tbl2.TabIndex = 9;
             // 
             // lblDateCreatedCaption
             // 
             lblDateCreatedCaption.AutoSize = true;
-            lblDateCreatedCaption.Location = new Point(134, 0);
+            lblDateCreatedCaption.Location = new Point(159, 0);
             lblDateCreatedCaption.Name = "lblDateCreatedCaption";
             lblDateCreatedCaption.Size = new Size(97, 20);
             lblDateCreatedCaption.TabIndex = 6;
             lblDateCreatedCaption.Text = "Date Created";
-            // 
-            // txtCookbookPrice
-            // 
-            txtCookbookPrice.Dock = DockStyle.Bottom;
-            txtCookbookPrice.Location = new Point(3, 23);
-            txtCookbookPrice.Name = "txtCookbookPrice";
-            txtCookbookPrice.Size = new Size(125, 27);
-            txtCookbookPrice.TabIndex = 7;
             // 
             // lblDateCreated
             // 
             lblDateCreated.AutoSize = true;
             lblDateCreated.BorderStyle = BorderStyle.FixedSingle;
             lblDateCreated.Dock = DockStyle.Bottom;
-            lblDateCreated.Location = new Point(134, 28);
+            lblDateCreated.Location = new Point(159, 28);
             lblDateCreated.Margin = new Padding(3, 0, 3, 3);
             lblDateCreated.Name = "lblDateCreated";
             lblDateCreated.Size = new Size(97, 22);
             lblDateCreated.TabIndex = 9;
+            // 
+            // numCookbookPrice
+            // 
+            numCookbookPrice.DecimalPlaces = 2;
+            numCookbookPrice.Dock = DockStyle.Bottom;
+            numCookbookPrice.Location = new Point(3, 23);
+            numCookbookPrice.Maximum = new decimal(new int[] { 3000, 0, 0, 0 });
+            numCookbookPrice.Name = "numCookbookPrice";
+            numCookbookPrice.Size = new Size(150, 27);
+            numCookbookPrice.TabIndex = 10;
             // 
             // cbIsActive
             // 
@@ -234,16 +247,6 @@
             btnSaveCookbook.UseVisualStyleBackColor = true;
             btnSaveCookbook.Click += btnSaveCookbook_Click;
             // 
-            // btnDeleteCookbook
-            // 
-            btnDeleteCookbook.AutoSize = true;
-            btnDeleteCookbook.Location = new Point(130, 3);
-            btnDeleteCookbook.Name = "btnDeleteCookbook";
-            btnDeleteCookbook.Size = new Size(94, 30);
-            btnDeleteCookbook.TabIndex = 15;
-            btnDeleteCookbook.Text = "Delete";
-            btnDeleteCookbook.UseVisualStyleBackColor = true;
-            // 
             // frmCookbook
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -258,6 +261,7 @@
             ((System.ComponentModel.ISupportInitialize)gRecipes).EndInit();
             tbl2.ResumeLayout(false);
             tbl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numCookbookPrice).EndInit();
             ResumeLayout(false);
         }
 
@@ -272,7 +276,6 @@
         private TextBox txtCookbookName;
         private TableLayoutPanel tbl2;
         private Label lblDateCreatedCaption;
-        private TextBox txtCookbookPrice;
         private Label lblDateCreated;
         private CheckBox cbIsActive;
         private ComboBox lstUserName;
@@ -280,5 +283,6 @@
         private DataGridView gRecipes;
         private Label lblDivider;
         private Button btnDeleteCookbook;
+        private NumericUpDown numCookbookPrice;
     }
 }

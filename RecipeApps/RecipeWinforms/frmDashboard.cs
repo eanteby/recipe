@@ -17,10 +17,9 @@ namespace RecipeWinforms
         private void BindData()
         {
             gData.DataSource = RecipeSystem.DataMaintenance.GetDashboardData();
-            gData.Columns["Type"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            gData.Columns["Type"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             WindowsFormsUtility.FormatGridForSearchResults(gData, "dt");
-            gData.DataBindingComplete += GData_DataBindingComplete;            
-
+            gData.DataBindingComplete += GData_DataBindingComplete;
         }
 
         public void OpenFormInfrmMain(Type frmtype)

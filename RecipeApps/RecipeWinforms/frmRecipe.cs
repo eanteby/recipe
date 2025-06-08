@@ -40,7 +40,7 @@ namespace RecipeWinforms
             WindowsFormsUtility.SetListBinding(lstCuisineType, dtcuisines, dtrecipe, "Cuisine");
             WindowsFormsUtility.SetListBinding(lstUserName, dtusers, dtrecipe, "HeartyHearthUser");
             WindowsFormsUtility.SetControlBinding(txtRecipeName, bindsource);
-            WindowsFormsUtility.SetControlBinding(txtNumCalories, bindsource);
+            WindowsFormsUtility.SetControlBinding(numNumCalories, bindsource);
             WindowsFormsUtility.SetControlBinding(lblRecipeStatus, bindsource);
             WindowsFormsUtility.SetControlBinding(lblDatePublished, bindsource);
             WindowsFormsUtility.SetControlBinding(lblDateArchived, bindsource);
@@ -116,7 +116,7 @@ namespace RecipeWinforms
         private void DeleteChildRow(DataGridView grid, int rowindex, RecipeChildEnum recipechild)
         {
             int id = WindowsFormsUtility.GetIdFromGrid(grid, rowindex, recipechild.ToString() + "Id");
-            var resp = MessageBox.Show("Are you sure you want to remove this row?", Application.ProductName, MessageBoxButtons.YesNoCancel);
+            var resp = MessageBox.Show("Are you sure you want to delete this " + recipechild + "?", Application.ProductName, MessageBoxButtons.YesNoCancel);
             if (resp == DialogResult.Yes)
             {
                 if (id > 0)
@@ -157,7 +157,11 @@ namespace RecipeWinforms
         {
             Form frm = new frmChangeRecipeStatus();
             frm.FormClosed += Frm_FormClosed;
-            frm.ShowDialog();
+            if (this.MdiParent != null && this.MdiParent is frmMain) 
+            {
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmChangeRecipeStatus));
+            }
+            frm.Text = this.Text + " - Change recipe status";
         }
 
         private string GetRecipeDesc()

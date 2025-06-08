@@ -70,6 +70,10 @@ namespace RecipeWinforms
                 {
                     newfrm = new frmAutoCreateCookbook();
                 }
+                else if (frmtype == typeof(frmChangeRecipeStatus))
+                {
+                    newfrm = new frmChangeRecipeStatus();
+                }
 
                 if (newfrm != null)
                 {

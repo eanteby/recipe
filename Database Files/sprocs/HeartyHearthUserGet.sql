@@ -1,7 +1,7 @@
 create or alter procedure dbo.HeartyHearthUserGet(
-@HeartyHearthUserId int = 0, 
-@All bit = 0, 
-@UserName varchar(30) = ''
+	@HeartyHearthUserId int = 0, 
+	@All bit = 0, 
+	@UserName varchar(30) = ''
 )
 as
 begin

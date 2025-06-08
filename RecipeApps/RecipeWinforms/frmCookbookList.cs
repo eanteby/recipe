@@ -36,8 +36,11 @@ namespace RecipeWinforms
         {
             if (e.KeyCode == Keys.Enter && gCookbookList.SelectedRows.Count > 0)
             {
-                ShowCookbookForm(gCookbookList.SelectedRows[0].Index);
-                e.SuppressKeyPress = true;
+                if (gCookbookList.SelectedRows[0].Index != -1)
+                {
+                    ShowCookbookForm(gCookbookList.SelectedRows[0].Index);
+                    e.SuppressKeyPress = true;
+                }
             }
         }
 
@@ -48,7 +51,10 @@ namespace RecipeWinforms
 
         private void GCookbookList_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
         {
-            ShowCookbookForm(e.RowIndex);
+            if (e.RowIndex != -1)
+            {
+                ShowCookbookForm(e.RowIndex);
+            }
         }
 
         private void BtnNew_Click(object? sender, EventArgs e)

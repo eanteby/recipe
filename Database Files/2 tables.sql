@@ -78,7 +78,6 @@ create table dbo.Recipe(
         constraint ck_Recipe_DateArchived_Cannot_be_a_future_date check (DateArchived <= getdate()),
     RecipeStatus as case when DatePublished is not null and DateArchived is null then 'published' when DateArchived is not null then 'archived' else 'drafted' end persisted,
     RecipePic as concat('Recipe_', replace(RecipeName, ' ', '_'), '.jpg') persisted,
-    constraint u_Recipe_RecipeName_CuisineId unique (RecipeName, CuisineId),
     constraint ck_Recipe_DatePublished_must_be_greater_than_DateDrafted check (DatePublished >= DateDrafted),
     constraint ck_Recipe_DateArchived_must_be_greater_than_DateDrafted check ((DatePublished is not null and DateArchived >= DatePublished) or (DatePublished is null and DateArchived >= DateDrafted)),
 )
@@ -151,3 +150,10 @@ create table dbo.RecipeIngredient(
     constraint u_RecipeIngredient_RecipeId_IngredientSequence unique (RecipeId, IngredientSequence),
     constraint u_RecipeIngredient_RecipeId_IngredientId unique (RecipeId, IngredientId)
 ) 
+
+
+update cookbook
+set cookbookprice = cookbookprice + .03
+from cookbook
+
+select * from cookbook

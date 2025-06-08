@@ -161,17 +161,18 @@
             // 
             // gData
             // 
+            gData.Anchor = AnchorStyles.Top;
             gData.BackgroundColor = Color.White;
             gData.BorderStyle = BorderStyle.None;
             gData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gData.Dock = DockStyle.Fill;
-            gData.Location = new Point(249, 3);
+            gData.Location = new Point(376, 3);
+            gData.Margin = new Padding(130, 3, 3, 3);
             gData.MultiSelect = false;
             gData.Name = "gData";
             gData.ReadOnly = true;
             gData.RowHeadersWidth = 51;
             gData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            gData.Size = new Size(487, 269);
+            gData.Size = new Size(360, 269);
             gData.TabIndex = 3;
             gData.TabStop = false;
             // 

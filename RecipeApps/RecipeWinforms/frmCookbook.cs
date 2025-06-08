@@ -33,8 +33,9 @@ namespace RecipeWinforms
             dtusers = Cookbook.GetUserList();
             WindowsFormsUtility.SetListBinding(lstUserName, dtusers, dtcookbook, "HeartyHearthUser");
             WindowsFormsUtility.SetControlBinding(txtCookbookName, bindsource);
-            WindowsFormsUtility.SetControlBinding(txtCookbookPrice, bindsource);
+            WindowsFormsUtility.SetControlBinding(numCookbookPrice, bindsource);
             WindowsFormsUtility.SetControlBinding(lblDateCreated, bindsource);
+            
             cbIsActive.DataBindings.Add("Checked", bindsource, "IsActive", true, DataSourceUpdateMode.OnPropertyChanged);
             LoadRecipes();
             this.Text = GetCookbookDesc();
@@ -67,7 +68,7 @@ namespace RecipeWinforms
 
         private void Delete()
         {
-            var response = MessageBox.Show("Are you sure you want to delete this recipe?", "Recipe", MessageBoxButtons.YesNo);
+            var response = MessageBox.Show("Are you sure you want to delete this cookbook?", "Recipe", MessageBoxButtons.YesNo);
             if (response == DialogResult.No)
             {
                 return;

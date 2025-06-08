@@ -1,6 +1,6 @@
 create or alter proc dbo.CourseDelete(
-@CourseId int = 0,
-@Message varchar(500) = '' output
+	@CourseId int = 0,
+	@Message varchar(500) = '' output
 )
 as
 begin
@@ -10,15 +10,15 @@ begin
 
 	begin try
 		begin tran
-		delete mcr
-		from MealCourseRecipe mcr
-		join MealCourse mc
-		on mc.MealCourseId = mcr.MealCourseId
-		where mc.CourseId = @CourseId
+			delete mcr
+			from MealCourseRecipe mcr
+			join MealCourse mc
+			on mc.MealCourseId = mcr.MealCourseId
+			where mc.CourseId = @CourseId
 
-		delete MealCourse where CourseId = @CourseId
-		delete Course where CourseId = @CourseId
-		commit
+			delete MealCourse where CourseId = @CourseId
+			delete Course where CourseId = @CourseId
+			commit
 	end try
 	begin catch
 		rollback;

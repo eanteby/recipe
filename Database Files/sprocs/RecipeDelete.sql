@@ -1,4 +1,7 @@
-create or alter procedure dbo.RecipeDelete(@RecipeId int, @message varchar(500) = '' output)
+create or alter procedure dbo.RecipeDelete(
+	@RecipeId int, 
+	@message varchar(500) = '' output
+)
 as
 begin
 	declare @return int = 0
@@ -10,9 +13,11 @@ begin
 
 	begin try
 		begin tran
-		delete RecipeIngredient where RecipeId =@RecipeId
-		delete Direction where RecipeId = @RecipeId
-		delete recipe where RecipeId =@RecipeId
+			delete RecipeIngredient where RecipeId =@RecipeId
+			delete Direction where RecipeId = @RecipeId
+			delete CookbookRecipe where RecipeId = @RecipeId
+			delete MealCourseRecipe where RecipeId = @RecipeId
+			delete recipe where RecipeId =@RecipeId
 		commit
 	end try
 	begin catch
@@ -25,5 +30,3 @@ begin
 end
 go
 
-
-select * from recipe

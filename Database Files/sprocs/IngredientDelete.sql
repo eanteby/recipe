@@ -1,6 +1,6 @@
 create or alter proc dbo.IngredientDelete(
-@IngredientId int = 0,
-@Message varchar(500) = '' output
+	@IngredientId int = 0,
+	@Message varchar(500) = '' output
 )
 as
 begin
@@ -10,8 +10,8 @@ begin
 
 	begin try
 		begin tran
-		delete RecipeIngredient where IngredientId = @IngredientId
-		delete Ingredient where IngredientId = @IngredientId
+			delete RecipeIngredient where IngredientId = @IngredientId
+			delete Ingredient where IngredientId = @IngredientId
 		commit
 	end try
 

@@ -42,14 +42,20 @@ namespace RecipeWinforms
         {
             if (e.KeyCode == Keys.Enter && gData.SelectedRows.Count > 0)
             {
-                ShowRecipeForm(gData.SelectedRows[0].Index);
-                e.SuppressKeyPress = true;
+                if (gData.SelectedRows[0].Index != -1)
+                {
+                    ShowRecipeForm(gData.SelectedRows[0].Index);
+                    e.SuppressKeyPress = true;
+                }
             }
         }
 
         private void GData_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
         {
-            ShowRecipeForm(e.RowIndex);
+            if (e.RowIndex != -1)
+            {
+                ShowRecipeForm(e.RowIndex);
+            }
         }
 
 

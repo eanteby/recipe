@@ -1,4 +1,6 @@
-create or alter procedure dbo.RecipeListGet(@Message varchar(500) = '' output )
+create or alter procedure dbo.RecipeListGet(
+@Message varchar(500) = '' output 
+)
 as
 begin
 	declare @return int = 0
@@ -13,5 +15,5 @@ begin
 	return @return
 end
 go
-exec RecipeListGet
+
 

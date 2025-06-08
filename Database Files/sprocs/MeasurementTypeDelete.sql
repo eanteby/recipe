@@ -1,6 +1,6 @@
 create or alter proc dbo.MeasurementTypeDelete(
-@MeasurementtypeId int = 0,
-@Message varchar(500) = '' output
+	@MeasurementtypeId int = 0,
+	@Message varchar(500) = '' output
 )
 as
 begin
@@ -9,8 +9,8 @@ begin
 	select @MeasurementTypeId = isnull(@MeasurementTypeId, 0)
 		begin try
 			begin tran
-			delete RecipeIngredient where MeasurementTypeId = @MeasurementTypeId
-			delete MeasurementType where MeasurementTypeId = @MeasurementTypeId
+				delete RecipeIngredient where MeasurementTypeId = @MeasurementTypeId
+				delete MeasurementType where MeasurementTypeId = @MeasurementTypeId
 			commit
 		end try
 

@@ -1,7 +1,7 @@
 create or alter proc dbo.CuisineUpdate(
-@CuisineId int = 0 output,
-@CuisineType varchar(50),
-@Message varchar(500) = '' output
+	@CuisineId int = 0 output,
+	@CuisineType varchar(50),
+	@Message varchar(500) = '' output
 )
 as
 begin

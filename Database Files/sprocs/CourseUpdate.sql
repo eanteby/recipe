@@ -1,8 +1,8 @@
 create or alter proc dbo.CourseUpdate(
-@CourseId int = 0 output,
-@CourseName varchar(30),
-@CourseSequence int,
-@Message varchar(500) = '' output
+	@CourseId int = 0 output,
+	@CourseName varchar(30),
+	@CourseSequence int,
+	@Message varchar(500) = '' output
 )
 as
 begin

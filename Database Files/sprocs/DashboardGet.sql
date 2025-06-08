@@ -1,5 +1,5 @@
 create or alter proc dbo.DashboardGet(
-@message varchar(500) = ' ' output
+	@message varchar(500) = ' ' output
 )
 as
 begin
@@ -14,4 +14,3 @@ begin
 	return @return
 end
 go
-exec DashboardGet

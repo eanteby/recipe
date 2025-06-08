@@ -1,14 +1,14 @@
 create or alter proc dbo.RecipeUpdate(
-@RecipeId int  output,
-@HeartyHearthUserId int ,
-@CuisineId int ,
-@RecipeName varchar (150),
-@NumCalories int ,
-@DateDrafted datetime output,
-@DatePublished datetime ,
-@DateArchived datetime ,
-@RecipeStatus varchar (15) output,
-@Message varchar(500) = '' output
+	@RecipeId int  output,
+	@HeartyHearthUserId int ,
+	@CuisineId int ,
+	@RecipeName varchar (150),
+	@NumCalories int ,
+	@DateDrafted datetime output,
+	@DatePublished datetime ,
+	@DateArchived datetime ,
+	@RecipeStatus varchar (15) output,
+	@Message varchar(500) = '' output
 )
 as
 begin
