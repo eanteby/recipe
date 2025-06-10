@@ -114,8 +114,10 @@
             // 
             // gIngredients
             // 
+            gIngredients.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            gIngredients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            gIngredients.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             gIngredients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gIngredients.Dock = DockStyle.Fill;
             gIngredients.Location = new Point(3, 38);
             gIngredients.Name = "gIngredients";
             gIngredients.RowHeadersWidth = 51;
@@ -133,6 +135,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.AutoScroll = true;
             tabPage2.Controls.Add(tblSteps);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
@@ -169,6 +172,8 @@
             // 
             // gSteps
             // 
+            gSteps.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            gSteps.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             gSteps.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gSteps.Dock = DockStyle.Fill;
             gSteps.Location = new Point(3, 38);

@@ -1,5 +1,6 @@
 ﻿
 using RecipeSystem;
+using System.Windows.Forms;
 
 namespace RecipeWinforms
 {
@@ -116,6 +117,10 @@ namespace RecipeWinforms
             }
             WindowsFormsUtility.AddDeleteButtonToGrid(grid, deletecolname);
             WindowsFormsUtility.FormatGridForEdit(grid, recipechild.ToString());
+
+            grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            grid.Dock = DockStyle.Fill; // This allows it to fill the parent container
+            grid.ScrollBars = ScrollBars.Both; // Ensure scrollbars are enabled
         }
 
         private void DeleteChildRow(DataGridView grid, int rowindex, RecipeChildEnum recipechild)

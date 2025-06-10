@@ -34,7 +34,7 @@ namespace RecipeWinforms
 
             foreach (Button b in tblButtons.Controls)
             {
-                if (frmRecipe.dtrecipe.Rows[0]["RecipeStatus"].ToString() == b.Text.ToLower() + "ed")
+                if (frmRecipe.dtrecipe.Rows[0]["RecipeStatus"].ToString() == b.Tag.ToString())
                 {
                     b.Enabled = false;
                 }
