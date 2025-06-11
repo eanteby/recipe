@@ -87,6 +87,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.AutoScroll = true;
             tabPage1.Controls.Add(tblIngredients);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
@@ -114,10 +115,10 @@
             // 
             // gIngredients
             // 
-            gIngredients.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             gIngredients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             gIngredients.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             gIngredients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gIngredients.Dock = DockStyle.Fill;
             gIngredients.Location = new Point(3, 38);
             gIngredients.Name = "gIngredients";
             gIngredients.RowHeadersWidth = 51;
@@ -473,6 +474,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoScroll = true;
             BackColor = Color.White;
             ClientSize = new Size(595, 623);
             Controls.Add(tblMain);
