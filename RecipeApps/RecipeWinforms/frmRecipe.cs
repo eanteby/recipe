@@ -28,6 +28,15 @@ namespace RecipeWinforms
             this.FormClosing += FrmRecipe_FormClosing;
             gIngredients.EditingControlShowing += GIngredients_EditingControlShowing;
             gSteps.EditingControlShowing += GSteps_EditingControlShowing;
+            tabPage2.VerticalScroll.Enabled = true;
+            tabPage2.AutoScroll = true;
+            tabPage1.AutoScroll = true;
+            tabPage1.VerticalScroll.Enabled = true;
+            tblIngredients.VerticalScroll.Enabled = true;
+            tblSteps.VerticalScroll.Enabled = true;
+            tblSteps.AutoScroll = true;
+            tblIngredients.AutoScroll = true;
+
         }
 
 

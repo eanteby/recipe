@@ -87,7 +87,6 @@
             // 
             // tabPage1
             // 
-            tabPage1.AutoScroll = true;
             tabPage1.Controls.Add(tblIngredients);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
@@ -164,6 +163,7 @@
             // 
             // btnSaveStep
             // 
+            btnSaveStep.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnSaveStep.Location = new Point(3, 3);
             btnSaveStep.Name = "btnSaveStep";
             btnSaveStep.Size = new Size(94, 29);

@@ -152,6 +152,4 @@ create table dbo.RecipeIngredient(
 ) 
 
 
-update recipe
-set numcalories = 's'
-from recipe
+

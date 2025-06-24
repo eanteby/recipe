@@ -37,6 +37,7 @@
             // 
             // tblMain
             // 
+            tblMain.AutoScroll = true;
             tblMain.ColumnCount = 1;
             tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tblMain.Controls.Add(gData, 0, 1);
