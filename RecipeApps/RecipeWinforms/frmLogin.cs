@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using RecipeWinforms.Properties;
+using System.Configuration;
 
 namespace RecipeWinforms
 {
@@ -14,6 +15,8 @@ namespace RecipeWinforms
 
         public bool ShowLogin()
         {
+            txtUsername.Text = Settings.Default.userid;
+            txtPassword.Text = Settings.Default.password;
 #if DEBUG
             this.Text += " - DEV";
 #endif
@@ -36,6 +39,10 @@ namespace RecipeWinforms
                 //string connstring = "Server=tcp:eanteby.database.windows.net,1433;Initial Catalog=HeartyHearthDB;Persist Security Info=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
                 RecipeDBManager.SetConnectionString(connstring, true, txtUsername.Text, txtPassword.Text);
                 loginsuccess = true;
+                Settings.Default.userid = txtUsername.Text;
+                Settings.Default.Save();
+                Settings.Default.password = txtPassword.Text;
+                Settings.Default.Save();
                 this.Close();
             }
             catch (Exception ex)

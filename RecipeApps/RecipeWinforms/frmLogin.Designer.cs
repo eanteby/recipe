@@ -91,6 +91,7 @@
             txtPassword.Dock = DockStyle.Fill;
             txtPassword.Location = new Point(91, 36);
             txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
             txtPassword.Size = new Size(342, 27);
             txtPassword.TabIndex = 3;
             // 
